@@ -8,9 +8,10 @@ namespace Drinks.samggannon;
 
 public class DrinkService
 {
+    private string baseUrl = "http://www.thecocktaildb.com/api/json/v1/1/";
     public List<Category> GetCategories()
     {
-        var client = new RestClient("http://www.thecocktaildb.com/api/json/v1/1/");
+        var client = new RestClient(baseUrl);
         var request = new RestRequest("list.php?c=list");
         var response = client.ExecuteAsync(request);
 
@@ -23,7 +24,6 @@ public class DrinkService
 
             categories = serialize.CategoriesList;
             TableVisualization.ShowTable(categories, "Categories Menu");
-            return categories;
         }
 
         return categories;
@@ -31,7 +31,7 @@ public class DrinkService
 
     internal List<Drink> GetDrinksByCategory(string? category)
     {
-        var client = new RestClient("http://www.thecocktaildb.com/api/json/v1/1/");
+        var client = new RestClient(baseUrl);
         var request = new RestRequest($"filter.php?c={HttpUtility.UrlEncode(category)}");
         var response = client.ExecuteAsync(request);
 
@@ -44,7 +44,6 @@ public class DrinkService
 
             drinks = serialize.DrinksList;
             TableVisualization.ShowTable(drinks, "Drinks Menu");
-            return drinks;
         }
 
         return drinks;
@@ -52,7 +51,7 @@ public class DrinkService
 
     internal void GetDrink(string drink)
     {
-        var client = new RestClient("http://www.thecocktaildb.com/api/json/v1/1/");
+        var client = new RestClient(baseUrl);
         var request = new RestRequest($"lookup.php?i={drink}");
         var response = client.ExecuteAsync(request);
 
@@ -84,7 +83,7 @@ public class DrinkService
                 }
             }
 
-            TableVisualization.ShowTable(prepList, drinkDetail.StrDrink);
+            TableVisualization.ShowTable(prepList, drinkDetail.strDrink);
         }
     }
 }

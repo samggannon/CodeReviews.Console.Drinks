@@ -4,7 +4,7 @@ namespace Drinks.samggannon;
 
 internal class TableVisualization
 {
-	public static void ShowTable<t>(List<t> tableData, string title) where t : class
+	public static void ShowTable<T>(List<T> tableData, string title) where T : class
 	{
 		
 		if (tableData == null)

@@ -8,7 +8,7 @@ public class UserInput
     {
         var categories = drinkService.GetCategories();
 
-        Console.WriteLine("Choose category: category is case sensitive");
+        Console.WriteLine("Choose category by typing the name of the category");
 
         string category = Console.ReadLine();
 
@@ -18,7 +18,7 @@ public class UserInput
             category = Console.ReadLine();
         }
 
-        if(!categories.Any(x => x.strCategory == category))
+        if(!categories.Any(x => x.strCategory.ToLower() == category.ToLower()))
         {
             Console.WriteLine("Category doesn't exist. Press a key to try again");
             Console.ReadLine();
